@@ -1,0 +1,51 @@
+
+body{
+    text-align: center;
+}
+
+body h1{
+    font-family: Cambria;
+    font-size: 35px;
+    margin-top: 5%;
+}
+
+.opinion h1{
+    margin-right: 45%;
+    font-family: Cambria;
+}
+
+.form-group-name h1{
+    font-size: 25px;
+}
+
+.form-group-comentario h1{
+    font-size: 25px;
+}
+
+.form-control{
+    font-size: 18px;
+    font-family: sans-serif;
+    font-weight: 400;
+    color: black;
+    background: white;
+    padding: 20px;
+    overflow: hidden;
+    border-radius: 35px 0px 35px 0px;
+    -moz-border-radius: 35px 0px 35px 0px;
+    -webkit-border-radius: 35px 0px 35px 0px;
+    border: 2px solid #5878ca;
+    width: 50%;
+    height: 50px;
+
+}
+
+.btn-primary{
+    margin-top: 1%;
+    margin-left: 45%;
+}
+/*
+Crear una pagina con un cuadro de texto en el que el cliente escriba su opinion
+Un boton para enviar esa opinion
+Un conjunto de valoraciones de la opinion.
+
+ */
