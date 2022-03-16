@@ -1,3 +1,4 @@
+'use strict'
 
 const http=require('http');
 const url=require('url');
@@ -22,6 +23,7 @@ const servidor=http.createServer((pedido ,respuesta) => {
 });
 
 servidor.listen(8888);
+console.log('Servidor corriendo en http://localhost:8888')
 
 function encaminar (pedido,respuesta,camino) {
     console.log(camino);
@@ -57,7 +59,7 @@ function encaminar (pedido,respuesta,camino) {
     }
 }
 
-
+/*En este codigo se tiene que recuperar el sentimiento*/
 function recuperar(pedido,respuesta) {
     let info = '';
     pedido.on('data', datosparciales => {
@@ -68,7 +70,7 @@ function recuperar(pedido,respuesta) {
         respuesta.writeHead(200, {'Content-Type': 'text/html'});
         const pagina=
             `<!doctype html><html><head></head><body>
-    Comentario${formulario['comentario']}<br>
+    Comentario: ${formulario['comentario']}<br>
     <a href="home.html">Retornar</a>
     </body></html>`;
         respuesta.end(pagina);
