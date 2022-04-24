@@ -1,25 +1,41 @@
 <!DOCTYPE html>
-<html lang="en">
 
+
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>Pagina de Opiniones</title>
-    <link rel="stylesheet" href="homeStyle.css">
-    <link rel="stylesheet" href="cajaOpiniones.js">
+    <title>Obtener opinion</title>
+    <meta charset="UTF-8"> PRACTICA DE NEGOCIO ELECTRONICO 2022 v0.3
+    <br><br>
+    INTERPRETACION AUTOMATICA DE OPINIONES
+    <br><br>
 </head>
 
 <body>
-<h1>Opiniones del Cliente</h1>
-<div class="opinion">
-    <form action="recuperardatos" method="post">
-        <div class="form-group-comentario">
-            <h1>Comentario</h1>
-            <input type="text" name="comentario" class="form-control" required="">
-        </div>
+<form action="grabaropinion" method="post">
+        <h2>Comentario</h2>
+        <input type="text" name="comentario" class="form-control" required="">
+     <input type="submit" value="grabar opinion para la IA">
 
-        <input type="submit" class="btn btn-primary" value="Enviar">
-    </form>
-</div>
+</form>
+
+<form action="versentimiento" method="post">
+    <br> <br>
+    <input type="submit" value="Ver el sentimiento asociado">
+</form>
+
+</form>
+<form action="guardarDB" method="post">
+    <br> <br>
+    <input type="submit" value="Guardar opinion y sentimiento en una base de datos">
+
+</form>
+</form>
+<form action="showopinion" method="post">
+    <br> <br>
+    <input type="submit" value="mostrar opinion">
+</form>
+
 </body>
 
 </html>
+
