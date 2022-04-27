@@ -28,13 +28,37 @@ const servidor=http.createServer((pedido ,respuesta) => {
 servidor.listen(8888);
 console.log('Servidor corriendo en http://localhost:8888')
 
+function spawn(mat, param2) {
+    return undefined;
+}
+
 function encaminar (pedido,respuesta,camino) {
     console.log(camino);
+
     switch (camino) {
-       /*case 'public/recuperardatos': {
-            recuperar(pedido,respuesta);
-            break;
-        }*/
+        case 'public/versentimiento': {
+            console.log('Vamos a recuperar el archivo sentimiento.txt');
+/*
+            const matlab = require("node-matlab");
+
+            matlab
+                .run("C:\\Users\\pplim\\Downloads\\JT_lstm_prod2.m")
+                .then((result) => console.log(result))
+                .catch((error) => console.log(error));*/
+
+                fs.readFile('C:\\Users\\pplim\\Downloads\\sentimiento.txt', function (err, data) {
+                if (err) {
+                    throw err;
+                }else{
+                    console.log('Archivo correctamente leido')
+                }
+                console.log(data.toString());
+                    respuesta.writeHead(200, {'Content-Type': 'text/html'});
+                    respuesta.write(data);
+                    return respuesta.end();
+            });
+                break;
+        }
         case 'public/grabaropinion':{
             console.log('Vamos a grabar la opinion en el archivo opinion.txt');
             //Procesamiento de los datos de los formularios
@@ -51,7 +75,13 @@ function encaminar (pedido,respuesta,camino) {
                 let opinionf;
                 opinionf=datosformulario['comentario']; // el formato es nombrevar=contenido&nombrevar2=contenido&...
 
-                fs.writeFile('opinion.txt',opinionf,{ flag: 'w+' }, err => {
+                fs.writeFile('C:\\Users\\pplim\\Downloads\\opinion.txt',opinionf,{ flag: 'w+' }, err => {
+                    /*try {
+                        const data = fs.readFileSync('C:\\Users\\pplim\\Downloads\\JT_lstm_prod2', 'utf8');
+                        console.log(data.toString());
+                    } catch (err) {
+                        console.error(err);
+                    }*/
                     if (err) {
                         console.error(err)
                         return
@@ -70,6 +100,24 @@ function encaminar (pedido,respuesta,camino) {
             /////
             break;
         };
+
+        case 'public/showopinion': {
+            console.log('Vamos a recuperar el archivo opinion.txt');
+            fs.readFile('C:\\Users\\pplim\\Downloads\\opinion.txt', function (err, data) {
+                if (err) {
+                    throw err;
+                }else{
+                    console.log('Archivo correctamente leido')
+                }
+                console.log(data.toString());
+                respuesta.writeHead(200, {'Content-Type': 'text/html'});
+                respuesta.write(data);
+                return respuesta.end();
+            });
+            break;
+        }
+
+
         default : {
             fs.stat(camino, error => {
                 if (!error) {
@@ -95,23 +143,4 @@ function encaminar (pedido,respuesta,camino) {
             });
         }
     }
-}
-
-/*En este codigo se tiene que recuperar el sentimiento*/
-function recuperar(pedido,respuesta) {
-    let info = '';
-    pedido.on('data', datosparciales => {
-        info += datosparciales;
-    });
-    pedido.on('end', () => {
-        const formulario = querystring.parse(info);
-        respuesta.writeHead(200, {'Content-Type': 'text/html'});
-        const pagina=
-            `<!doctype html><html><head></head><body>
-    Comentario: ${formulario['comentario']}<br>
-    
-    <a href="home.html">Retornar</a>
-    </body></html>`;
-        respuesta.end(pagina);
-    });
 }
